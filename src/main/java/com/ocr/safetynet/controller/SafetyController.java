@@ -62,10 +62,10 @@ public class SafetyController {
 		for (Person person : personList) {
 			
 			person.setAllergies(medicalrecordService
-					.getMedicalRecordByName(person.getFirstName(), person.getLastName()).getAllergies());
+					.getMedicalRecordByNames(person.getFirstName(), person.getLastName()).getAllergies());
 			
 			person.setMedications(medicalrecordService
-					.getMedicalRecordByName(person.getFirstName(), person.getLastName()).getMedications());
+					.getMedicalRecordByNames(person.getFirstName(), person.getLastName()).getMedications());
 			
 		}
 

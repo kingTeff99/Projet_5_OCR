@@ -62,7 +62,7 @@ public class MedicalRecordEndpoint {
         logger.info("HTTP PUT request received at /medicalRecord URL");
 
         MedicalRecord existingMedicalRecord = medicalRecordService
-        		.getMedicalRecordByName(medicalRecord.getFirstName(), medicalRecord.getLastName());
+        		.getMedicalRecordByNames(medicalRecord.getFirstName(), medicalRecord.getLastName());
 
         if (existingMedicalRecord!=null) {
             existingMedicalRecord.setFirstName(medicalRecord.getFirstName());

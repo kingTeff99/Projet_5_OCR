@@ -64,7 +64,7 @@ public class SafetyControllerTest {
 
         MedicalRecord medicalrecord1 = new MedicalRecord("Peu","importe","01/10/1997", medications1, allergies1);
 
-        when(medicalrecordService.getMedicalRecordByName(anyString(),anyString())).thenReturn(medicalrecord1);
+        when(medicalrecordService.getMedicalRecordByNames(anyString(),anyString())).thenReturn(medicalrecord1);
         
         when(personService.getPersons()).thenReturn(Arrays.asList(person1, person2));
 

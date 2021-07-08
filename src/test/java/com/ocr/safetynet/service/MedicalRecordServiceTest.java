@@ -94,7 +94,7 @@ public class MedicalRecordServiceTest {
         when(dataTreatment.getMedicalRecords()).thenReturn(ourListOfMedicalrecord);
 
         //WHEN
-        MedicalRecord result = medicalrecordService.getMedicalRecordByName("Louis","Funes");
+        MedicalRecord result = medicalrecordService.getMedicalRecordByNames("Louis","Funes");
 
         //THEN
         assertTrue(result.getMedications().get(0).equals("dodoli"));

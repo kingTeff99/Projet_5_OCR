@@ -114,9 +114,9 @@ public class FireStationService {
         	
             person.setAge(personService.ageCalculation(person.getBirthdate()));
             
-            person.setAllergies(medicalRecordService.getMedicalRecordByName(person.getFirstName(),person.getLastName()).getAllergies());
+            person.setAllergies(medicalRecordService.getMedicalRecordByNames(person.getFirstName(),person.getLastName()).getAllergies());
             
-            person.setMedications(medicalRecordService.getMedicalRecordByName(person.getFirstName(),person.getLastName()).getMedications());
+            person.setMedications(medicalRecordService.getMedicalRecordByNames(person.getFirstName(),person.getLastName()).getMedications());
             
         }
         
@@ -201,10 +201,10 @@ public class FireStationService {
                 person.setAge(personService.ageCalculation(person.getBirthdate()));
                 
                 person.setAllergies(medicalRecordService
-                		.getMedicalRecordByName(person.getFirstName(),person.getLastName()).getAllergies());
+                		.getMedicalRecordByNames(person.getFirstName(),person.getLastName()).getAllergies());
                 
                 person.setMedications(medicalRecordService
-                		.getMedicalRecordByName(person.getFirstName(),person.getLastName()).getMedications());
+                		.getMedicalRecordByNames(person.getFirstName(),person.getLastName()).getMedications());
                 
             }
             json.put(ourFirestation.getAddress(),ourFirestation.getPersonToAdd());

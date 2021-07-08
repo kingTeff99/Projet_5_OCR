@@ -139,7 +139,7 @@ public class MedicalRecordEndpointTest {
         MedicalRecord medicalRecord = new MedicalRecord("Steve","Biko","08/07/1989", medications, allergies);
 
 
-        when(medicalRecordService.getMedicalRecordByName("Steve","Biko")).thenReturn(medicalRecord);
+        when(medicalRecordService.getMedicalRecordByNames("Steve","Biko")).thenReturn(medicalRecord);
 
         String medicalrecordJSON = "{\n" +
                 "        \"firstName\": \"Steve\",\n" +

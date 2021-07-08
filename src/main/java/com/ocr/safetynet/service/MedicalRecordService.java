@@ -20,12 +20,12 @@ public class MedicalRecordService {
     }
     
     /**
-     * 
+     * GET medical record of person by its firstname and lastname
      * @param firstName
      * @param lastName
      * @return
      */
-    public MedicalRecord getMedicalRecordByName(String firstName, String lastName) {
+    public MedicalRecord getMedicalRecordByNames(String firstName, String lastName) {
     	
         for (MedicalRecord medicalrecord : dataTreatment.getMedicalRecords()) {
         	

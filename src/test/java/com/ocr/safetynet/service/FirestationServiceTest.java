@@ -168,8 +168,8 @@ public class FirestationServiceTest {
         when(dataTreatment.getFireStations()).thenReturn(Arrays.asList(firestation1));
         when(dataTreatment.getPersons()).thenReturn(Arrays.asList(person1, person2));
         when(personService.ageCalculation(anyString())).thenReturn(20);
-        when(medicalrecordService.getMedicalRecordByName(anyString(),anyString())).thenReturn(new MedicalRecord());
-        when(medicalrecordService.getMedicalRecordByName(anyString(),anyString())).thenReturn(new MedicalRecord());
+        when(medicalrecordService.getMedicalRecordByNames(anyString(),anyString())).thenReturn(new MedicalRecord());
+        when(medicalrecordService.getMedicalRecordByNames(anyString(),anyString())).thenReturn(new MedicalRecord());
 
         JSONObject json = new JSONObject();
         json.put("persons",Arrays.asList(person1, person2));
@@ -248,9 +248,9 @@ public class FirestationServiceTest {
 
         when(dataTreatment.getFireStations()).thenReturn(Arrays.asList(firestation1, firestation2,firestation3));
         
-        when(medicalrecordService.getMedicalRecordByName(anyString(),anyString())).thenReturn(new MedicalRecord());
+        when(medicalrecordService.getMedicalRecordByNames(anyString(),anyString())).thenReturn(new MedicalRecord());
         
-        when(medicalrecordService.getMedicalRecordByName(anyString(),anyString())).thenReturn(new MedicalRecord());
+        when(medicalrecordService.getMedicalRecordByNames(anyString(),anyString())).thenReturn(new MedicalRecord());
         
         json.put("avenue de Paris",Arrays.asList(person1, person2));
         json2.put("2",json);
