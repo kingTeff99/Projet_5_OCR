@@ -28,7 +28,12 @@ public class FirestationEndpoint {
 
     @Autowired
     FireStationService firestationService;
-
+    
+    /**
+     * DISPLAY Firestation
+     * @return
+     * @throws Exception
+     */
     @GetMapping(value = "/firestations")
     public MappingJacksonValue displayFireStation() throws Exception {
     	
@@ -46,7 +51,12 @@ public class FirestationEndpoint {
     }
 
 
-
+    /**
+     * UPDATE Firestation
+     * @param fireStation
+     * @return
+     * @throws Exception
+     */
     @PutMapping(value = "/firestation")
     public MappingJacksonValue updateFirestation(@RequestBody FireStation fireStation) throws Exception {
     	
@@ -62,7 +72,13 @@ public class FirestationEndpoint {
         }
         return displayFireStation();
     }
-
+    
+    /**
+     * SAVE Firestation
+     * @param firestation
+     * @return
+     * @throws Exception
+     */
     @PostMapping(value = "/firestation")
     public ResponseEntity<Void> saveFirestation(@RequestBody FireStation firestation) throws Exception {
     	
@@ -82,7 +98,13 @@ public class FirestationEndpoint {
 
         return ResponseEntity.created(location).build();
     }
-
+    
+    /**
+     * DELETE Firestation
+     * @param firestation
+     * @return
+     * @throws Exception
+     */
     @DeleteMapping(value = "/firestation")
     public MappingJacksonValue deleteFirestation(@RequestBody FireStation firestation) throws Exception {
     	

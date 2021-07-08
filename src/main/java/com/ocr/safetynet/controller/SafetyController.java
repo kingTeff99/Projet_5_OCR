@@ -38,28 +38,34 @@ public class SafetyController {
 	private MedicalRecordService medicalrecordService;
 
 
-	
+	/**
+	 * GET person with its first and last name
+	 * @param firstName
+	 * @param lastName
+	 * @return
+	 * @throws Exception
+	 */
 	@GetMapping("/personInfo")
 	public MappingJacksonValue displayPeople(@RequestParam(name="firstName", required = true)String firstName
 			, @RequestParam(name="lastName", required = true)String lastName) throws Exception {
 
 
-		List<Person> ourPersonList = new ArrayList<>();
+		List<Person> personList = new ArrayList<>();
 		
 		for(int i = 0; i < personService.getPersons().size(); i++) {
 			
 			if( personService.getPersons().get(i).getLastName().equals(lastName) )
-				ourPersonList.add(personService.getPersons().get(i));
+				personList.add(personService.getPersons().get(i));
 			
 		}
 		
-		for (Person person : ourPersonList) {
+		for (Person person : personList) {
 			
 			person.setAllergies(medicalrecordService
-					.getMedicalRecordByName(person.getFirstName(),person.getLastName()).getAllergies());
+					.getMedicalRecordByName(person.getFirstName(), person.getLastName()).getAllergies());
 			
 			person.setMedications(medicalrecordService
-					.getMedicalRecordByName(person.getFirstName(),person.getLastName()).getMedications());
+					.getMedicalRecordByName(person.getFirstName(), person.getLastName()).getMedications());
 			
 		}
 
@@ -67,23 +73,32 @@ public class SafetyController {
 
 		FilterProvider listFilters = new SimpleFilterProvider().addFilter("mySpecificFilter", myFilter);
 		
-		MappingJacksonValue personsFilters = new MappingJacksonValue(ourPersonList);
+		MappingJacksonValue personsFilters = new MappingJacksonValue(personList);
 		
 		personsFilters.setFilters(listFilters);
 
 		return personsFilters;
 	}
 
-
+	/**
+	 * GET people live at this firestation number
+	 * @param number
+	 * @return
+	 * @throws Exception
+	 */
 	@GetMapping("/firestation")
 	public MappingJacksonValue displayPeopleByFireStationNumber(@RequestParam(name= "stationNumber", required = true)String number) throws Exception {
 		
 		String[] tab = {"city", "zip", "email", "birthdate", "medications", "allergies"};
 		
-		return firestationService.filter(tab, firestationService.sortPersonByStation(number));
+		return firestationService.filter(tab, firestationService.getPersonsByStation(number));
 	}
 
-	
+	/**
+	 * GET children live at this address
+	 * @param address
+	 * @return
+	 */
 	@GetMapping("/childAlert")
 	public MappingJacksonValue displayKids(@RequestParam(name= "address", required = true)String address) {
 		
@@ -91,15 +106,25 @@ public class SafetyController {
 		
 		return personService.filter(tab, personService.sortChildrenAndAdultByAddress(address));
 	}
-
+	
+	/**
+	 * GET all person live at those firestations number
+	 * @param listOfStations
+	 * @return
+	 */
 	@GetMapping("/flood/stations")
 	public MappingJacksonValue displayPeopleByStationNumber(@RequestParam(name="stations", required = true)List<String> listOfStations) {
 		
 		String[] tab = {"address","city","zip","email","birthdate"};
 		
-		return firestationService.filter(tab,firestationService.sortPersonByListOfStations(listOfStations));
+		return firestationService.filter(tab,firestationService.getPersonByListOfStations(listOfStations));
 	}
-
+	
+	/**
+	 * GET people live at this firestation number
+	 * @param address
+	 * @return
+	 */
 	@GetMapping("/fire")
 	public MappingJacksonValue displayPeopleByAddress(@RequestParam(name="address", required = true)String address) {
 		
@@ -108,6 +133,11 @@ public class SafetyController {
 		return firestationService.filter(tab,firestationService.sortPersonByAddress(address));
 	}
 	
+	/**
+	 * GET phone number of people live in this firestation area
+	 * @param firestation
+	 * @return
+	 */
 	@GetMapping("/phoneAlert")
 	public List<String> displayNumberByFirestation(@RequestParam(name="firestation", required = true)String firestation) {
 		
@@ -128,23 +158,27 @@ public class SafetyController {
 		return phoneNumber;
 	}
 
-
+	/**
+	 * GET emails of people live in the city
+	 * @param city
+	 * @return
+	 */
 	@GetMapping("/communityEmail")
 	public List<String> getEmailOfCity(@RequestParam(name="city", required = true)String city) {
 		
-		List<String> emailCommunity = new ArrayList<>();
+		List<String> emails = new ArrayList<>();
 		
-		List<Person> personFromCity = personService.getPersons()
+		List<Person> persons = personService.getPersons()
 				.stream()
 				.filter(c -> c.getCity().equals(city))
 				.collect(Collectors.toList());
 
-		for (Person person : personFromCity) {
+		for (Person person : persons) {
 			
-			emailCommunity.add(person.getEmail());
+			emails.add(person.getEmail());
 			
 		}
-		return emailCommunity;
+		return emails;
 	}
 
 	

@@ -25,13 +25,22 @@ public class FireStationService {
     
     @Autowired
     MedicalRecordService medicalRecordService;
-
+    
+    /**
+     * 
+     * @return
+     */
     public List<FireStation> getFirestations(){
     	
         return dataTreatment.getFireStations();
         
     }
-
+    
+    /**
+     * 
+     * @param address
+     * @return
+     */
     public FireStation getAllFireStation(String address) {
     	
         for (FireStation firestation : dataTreatment.getFireStations()) {
@@ -44,7 +53,12 @@ public class FireStationService {
         }
         return null;
     }
-
+    
+    /**
+     * 
+     * @param stationNumber
+     * @return
+     */
     public FireStation getFireStationByNumber(String stationNumber) {
     	
         for (FireStation firestation : dataTreatment.getFireStations()) {
@@ -57,20 +71,37 @@ public class FireStationService {
         }
         return null;
     }
-
+    
+    
+    /**
+     * 
+     * @param firestation
+     * @return
+     */
     public FireStation saveFireStation(FireStation firestation) {
     	
     	dataTreatment.getFireStations().add(firestation);
     	
         return firestation;
     }
-
+    
+    /**
+     * 
+     * @param address
+     * @param station
+     */
     public void deleteStation(String address, String station) {
     	
     	dataTreatment.getFireStations().removeIf(firestation -> (firestation.getAddress().equals(address))
                 && (firestation.getStation().equals(station)));
     }
-
+    
+    
+    /**
+     * 
+     * @param address
+     * @return
+     */
     public JSONObject sortPersonByAddress(String address){
     	
         FireStation ourFirestation = getAllFireStation(address);
@@ -98,7 +129,13 @@ public class FireStationService {
         return json;
     }
     
-    public JSONObject sortPersonByStation(String stationNumber){
+    
+    /**
+     * 
+     * @param stationNumber
+     * @return
+     */
+    public JSONObject getPersonsByStation(String stationNumber){
     	
         int numberOfChildren = 0;
         
@@ -140,8 +177,14 @@ public class FireStationService {
 
         return json;
     }
-
-    public JSONObject sortPersonByListOfStations(List<String> listOfStations){
+    
+    
+    /**
+     * 
+     * @param listOfStations
+     * @return
+     */
+    public JSONObject getPersonByListOfStations(List<String> listOfStations){
     	
         FireStation ourFirestation;
         

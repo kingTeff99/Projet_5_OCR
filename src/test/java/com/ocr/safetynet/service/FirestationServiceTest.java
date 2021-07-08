@@ -208,7 +208,7 @@ public class FirestationServiceTest {
         json.put("adults",1);
 
         //WHEN
-        JSONObject result = firestationService.sortPersonByStation("2");
+        JSONObject result = firestationService.getPersonsByStation("2");
 
         //THEN
         assertTrue(result.toString().equals(json.toString()));
@@ -258,7 +258,7 @@ public class FirestationServiceTest {
         json2.put("8",json);
 
         //WHEN
-        JSONObject result = firestationService.sortPersonByListOfStations(Arrays.asList("2", "8"));
+        JSONObject result = firestationService.getPersonByListOfStations(Arrays.asList("2", "8"));
 
         //THEN
         assertTrue(result.toString().equals(json2.toString()));

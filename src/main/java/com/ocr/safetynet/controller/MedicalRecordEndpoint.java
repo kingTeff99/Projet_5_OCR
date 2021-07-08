@@ -28,7 +28,12 @@ public class MedicalRecordEndpoint {
 
     @Autowired
     MedicalRecordService medicalRecordService;
-
+    
+    /**
+     * GET MedicalRecord
+     * @return
+     * @throws Exception
+     */
     @GetMapping(value = "/medicalRecord")
     public MappingJacksonValue getMedicalRecord() throws Exception {
     	
@@ -46,7 +51,12 @@ public class MedicalRecordEndpoint {
     }
 
 
-
+    /**
+     * UPDATE Medical Record
+     * @param medicalRecord
+     * @return
+     * @throws Exception
+     */
     @PutMapping(value = "/medicalRecord")
     public MappingJacksonValue updateMedicalRecord(@RequestBody MedicalRecord medicalRecord) throws Exception {
         logger.info("HTTP PUT request received at /medicalRecord URL");
@@ -63,7 +73,13 @@ public class MedicalRecordEndpoint {
         }
         return getMedicalRecord();
     }
-
+    
+    /**
+     * SAVE Medical Record
+     * @param medicalRecord
+     * @return
+     * @throws Exception
+     */
     @PostMapping(value = "/medicalRecord")
     public ResponseEntity<Void> saveMedicalRecord(@RequestBody MedicalRecord medicalRecord) throws Exception {
     	
@@ -85,7 +101,12 @@ public class MedicalRecordEndpoint {
         return ResponseEntity.created(location).build();
     }
 
-
+    /**
+     * DELETE Medical Record
+     * @param medicalRecord
+     * @return
+     * @throws Exception
+     */
     @DeleteMapping(value = "/medicalRecord")
     public MappingJacksonValue deleteMedicalrecord(@RequestBody MedicalRecord medicalRecord) throws Exception {
     	

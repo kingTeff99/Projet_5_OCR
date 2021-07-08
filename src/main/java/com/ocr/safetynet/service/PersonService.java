@@ -27,7 +27,12 @@ public class PersonService {
         return dataTreatment.getPersons();
         
     }
-
+    
+    /**
+     * 
+     * @param person
+     * @return
+     */
     public Person save(Person person) {
     	
     	dataTreatment.getPersons().add(person);
@@ -35,14 +40,25 @@ public class PersonService {
         return person;
         
     }
-
+    
+    /**
+     * 
+     * @param firstName
+     * @param lastName
+     */
     public void deleteByName(String firstName,String lastName){
     	
     	dataTreatment.getPersons().removeIf(person -> (person.getFirstName().equals(firstName))
                 && (person.getLastName().equals(lastName)));
         
     }
-
+    
+    /**
+     * 
+     * @param firstName
+     * @param lastName
+     * @return
+     */
     public Person findPersonByName(String firstName,String lastName){
     	
         for (Person person : dataTreatment.getPersons()) {
@@ -52,7 +68,12 @@ public class PersonService {
         }
         return null;
     }
-
+    
+    /**
+     * 
+     * @param birthDate
+     * @return
+     */
     public int ageCalculation(String birthDate){
     	
     	LocalDate today = LocalDate.now();
@@ -73,7 +94,12 @@ public class PersonService {
 		
 	    return 0;
     }
-
+    
+    /**
+     * 
+     * @param address
+     * @return
+     */
     public JSONObject sortChildrenAndAdultByAddress(String address){
     	
         List<Person> personFamily =  dataTreatment.getPersons()
@@ -109,7 +135,13 @@ public class PersonService {
 
         return json2;
     }
-
+    
+    /**
+     * 
+     * @param tab
+     * @param json
+     * @return
+     */
     public MappingJacksonValue filter(String[] tab, JSONObject json){
     	
         SimpleBeanPropertyFilter myFilter = SimpleBeanPropertyFilter.serializeAllExcept(tab);

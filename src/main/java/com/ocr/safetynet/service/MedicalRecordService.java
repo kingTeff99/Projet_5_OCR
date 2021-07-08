@@ -18,7 +18,13 @@ public class MedicalRecordService {
         return dataTreatment.getMedicalRecords();
         
     }
-
+    
+    /**
+     * 
+     * @param firstName
+     * @param lastName
+     * @return
+     */
     public MedicalRecord getMedicalRecordByName(String firstName, String lastName) {
     	
         for (MedicalRecord medicalrecord : dataTreatment.getMedicalRecords()) {
@@ -31,7 +37,12 @@ public class MedicalRecordService {
         }
         return null;
     }
-
+    
+    /**
+     * 
+     * @param medicalRecord
+     * @return
+     */
     public MedicalRecord saveMedicalRecord(MedicalRecord medicalRecord) {
     	
     	dataTreatment.getMedicalRecords().add(medicalRecord);

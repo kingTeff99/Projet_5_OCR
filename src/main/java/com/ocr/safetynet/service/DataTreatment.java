@@ -56,7 +56,11 @@ public class DataTreatment {
 		this.medicalrecords = medicalrecords;
 		
 	}
-
+	
+	/*
+	 * Help use to be sure the bean was totally loaded 
+	 * after all dependencies was initialized
+	 */
 	@PostConstruct
 	public void init() throws Exception {
 		
@@ -69,13 +73,20 @@ public class DataTreatment {
 		jsonObj = loadFile();
 		
 	}
-
+	
+	/*
+	 * get all people
+	 */
 	public List<Person> getPersons() {
 		
 		return persons;
 		
 	}
 	
+	/*
+	 * 
+	 * get all medical records in the data
+	 */
 	public List<MedicalRecord> getMedicalRecords() {
 		
 		return medicalrecords;
@@ -168,7 +179,7 @@ public class DataTreatment {
 
 	public JSONObject loadFile() throws Exception {
 		
-		String filepath = "src/data.json";
+		String filepath = "data.json";
 		
 		JSONParser parser = new JSONParser();
 		

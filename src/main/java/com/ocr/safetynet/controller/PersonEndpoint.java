@@ -29,9 +29,14 @@ public class PersonEndpoint {
 
     @Autowired
     PersonService personService;
-
+    
+    /**
+     * GET persons 
+     * @return
+     * @throws Exception
+     */
     @GetMapping(value = "/person")
-    public MappingJacksonValue afficherPersons() throws Exception {
+    public MappingJacksonValue getPersons() throws Exception {
         logger.info("HTTP GET request received at /person URL");
 
         SimpleBeanPropertyFilter myFilter = SimpleBeanPropertyFilter.serializeAllExcept("birthdate","age"
@@ -47,7 +52,12 @@ public class PersonEndpoint {
         return personFiltres;
     }
 
-
+    /**
+     * UPDATE person
+     * @param person
+     * @return
+     * @throws Exception
+     */
     @PutMapping(value = "/person")
     public MappingJacksonValue updatePersons(@RequestBody Person person) throws Exception {
     	
@@ -64,9 +74,15 @@ public class PersonEndpoint {
             existingPerson.setPhone(person.getPhone());
             existingPerson.setEmail(person.getEmail());
         }
-        return afficherPersons();
+        return getPersons();
     }
-
+    
+    /**
+     * ADD Person
+     * @param person
+     * @return
+     * @throws Exception
+     */
     @PostMapping(value = "/person")
     public ResponseEntity<Void> addPersons(@RequestBody Person person) throws Exception {
     	
@@ -89,7 +105,12 @@ public class PersonEndpoint {
         return ResponseEntity.created(location).build();
     }
 
-
+    /**
+     * DELETE Person
+     * @param person
+     * @return
+     * @throws Exception
+     */
     @DeleteMapping(value = "/person")
     public MappingJacksonValue deletePersons(@RequestBody Person person) throws Exception {
     	
@@ -97,6 +118,6 @@ public class PersonEndpoint {
         
         personService.deleteByName(person.getFirstName(),person.getLastName());
 
-        return afficherPersons();
+        return getPersons();
     }
 }
